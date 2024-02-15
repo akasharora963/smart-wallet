@@ -7,7 +7,10 @@
 const hre = require("hardhat");
 
 async function main() {
-  
+  const walletProxy = await hre.ethers.getContractFactory("WalletProxy");
+  const contract = await walletProxy.deploy();
+  await contract.waitForDeployment();
+  console.log("Contract Address : ",await contract.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere
