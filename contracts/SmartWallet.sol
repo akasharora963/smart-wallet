@@ -34,14 +34,16 @@ contract SmartWallet {
 
     // Function to destroy the smart wallet
     function destroy(address _owner) external {
-        require(msg.sender == _owner, "Only the owner can destroy the wallet");
+        require(_owner == owner, "Only the owner can destroy the wallet");
         //selfdestruct(payable(owner));
+        console.log(address(this).balance,address(this));
         payable(_owner).transfer(address(this).balance);
+        console.log(address(this).balance,address(this));     
     }
 
     // Function to destroy the smart wallet
     function destroyAndTransfer(address newWallet,address _owner) external {
-        require(msg.sender == _owner, "Only the owner can transfer the wallet");
+        require(_owner == owner, "Only the owner can transfer the wallet");
         //selfdestruct(payable(owner));
         payable(newWallet).transfer(address(this).balance);
     }
@@ -58,6 +60,7 @@ contract SmartWallet {
 
     // Function to get the balance of the smart wallet
     function getBalance() external view returns (uint256) {
+         console.log(address(this).balance,address(this));
         return address(this).balance;
     }
 }

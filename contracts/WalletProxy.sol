@@ -37,12 +37,12 @@ contract WalletProxy {
         console.log("owner here",_owner);
 
          // Call the destroy function of the user's wallet consetract
-          // Call the destroy function of the user's wallet contract
-        (bool success, ) = wallet.delegatecall(
-            abi.encodeWithSignature("destroy(address)",_owner)
-        );
+        SmartWallet(payable(wallet)).destroy(msg.sender);
+        // (bool success, ) = wallet.delegatecall(
+        //     abi.encodeWithSignature("destroy(address)",_owner)
+        // );
 
-        require(success,"Error in destroying wallet");
+        // require(success,"Error in destroying wallet");
         
         // Remove the user's wallet from the mapping
         delete userWallets[msg.sender];
@@ -63,11 +63,7 @@ contract WalletProxy {
         address _newWallet = userWallets[msg.sender];
         
         // Call the destroy function of the user's wallet contract
-        (bool success, ) = wallet.delegatecall(
-            abi.encodeWithSignature("destroyAndTransfer(address,address)",_newWallet,_owner)
-        );
-
-        require(success,"Error in destroying wallet");
+        SmartWallet(payable(wallet)).destroyAndTransfer(_newWallet,_owner);
     }
 
    
