@@ -13,7 +13,7 @@ contract WalletProxy {
     event WalletCreated(address indexed wallet, address indexed owner);
 
     // Function to create a new smart wallet
-    function createWallet(bytes32  _salt) public returns (address) {
+    function createWallet(bytes32  _salt) public {
         require(userWallets[msg.sender] == address(0), "User already has a wallet");
 
         // Deploy a new unique instance of the SmartWallet contract
@@ -22,13 +22,9 @@ contract WalletProxy {
         // Map the user to their wallet contract address
         userWallets[msg.sender] = address(newWallet);
         
+        console.log("new wallet",address(newWallet));
         // Emit an event to log the creation of the wallet
         emit WalletCreated(address(newWallet), msg.sender);
-
-        console.log("new wallet",address(newWallet));
-        
-        // Return the address of the newly created wallet
-        return address(newWallet);
     }
 
     // Function to destroy a user's smart wallet
@@ -62,17 +58,16 @@ contract WalletProxy {
         delete userWallets[msg.sender];
 
         // redeploy logic
-        address newWallet = createWallet(_salt);
+        createWallet(_salt);
+
+        address _newWallet = userWallets[msg.sender];
         
         // Call the destroy function of the user's wallet contract
         (bool success, ) = wallet.delegatecall(
-            abi.encodeWithSignature("destroyAndTransfer(address,address)",newWallet,_owner)
+            abi.encodeWithSignature("destroyAndTransfer(address,address)",_newWallet,_owner)
         );
 
         require(success,"Error in destroying wallet");
-
-        //Add to mapping after gettting funds
-        userWallets[msg.sender] = newWallet;
     }
 
    
