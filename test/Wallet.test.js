@@ -125,7 +125,7 @@ describe("smart-wallet", function () {
     //     .destroyWallet(wallet);
     //   await tx.wait();
 
-    //   expect((await contract.getBalance()).toString() * 10 ** -18).to.equal(0);
+    //expect((await contract.getBalance()).toString() * 10 ** -18).to.equal(0);
     // });
 
     it("Should destroy old wallet and recreate new wallet", async function () {
