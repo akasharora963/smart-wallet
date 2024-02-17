@@ -87,6 +87,10 @@ Made using React ,tailwindcss and Ethers.js
 ```bash
 cd app
 ```
+install dependencies
+```bash
+npm i
+```
 And Run
 ```bash
 npm run start
