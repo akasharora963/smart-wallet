@@ -10,6 +10,8 @@ async function main() {
   const walletProxy = await hre.ethers.getContractFactory("WalletProxy");
   const contract = await walletProxy.deploy();
   await contract.waitForDeployment();
+  //Testnet address
+  //0x9DF57AFA1E5C6386b51B609d32757eA2609edE66
   console.log("Contract Address : ",await contract.getAddress());
 }
 
