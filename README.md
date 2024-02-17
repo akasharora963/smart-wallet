@@ -6,17 +6,15 @@ There are two Smart Conracts involved :
 
 | Contracts        | Description                                                |
 | ------------------ | ---------------------------------------------------------- |
-|| 
+||
 | `WalletProxy` |  manage the creation and destruction of smart wallet contracts.
-|
 | `SmartWallet` | smart wallet contract has the functionality to interact with other contracts, send and receive funds.|
 
 Functions in WalletProxy : 
 | Functions       | Description                                                |
 | ------------------ | ---------------------------------------------------------- |
-|| 
+||
 | `createWallet` |  creats the unique wallet for user using salt (bytes32) as parameter
-|
 | `destroyWallet` | destroy the current wallet takes wallet address as parameter|
 | `destroyWalletAndRedploy` | destroy the current wallet and create new wallet for user takes wallet address and new salt (bytes32) as parameter|
 
@@ -46,6 +44,7 @@ Start the local node
 ```bash
 npx hardhat node
 ```
+Deploy
 ```bash
 npx hardhat run --network localhost scripts/deploy.js
 ```
@@ -55,7 +54,6 @@ Network Config
 ADD INFURA_API_KEY and your PRIVATE_KEY
 ```
 On sepolia testnet
-start the local node
 ```bash
 npx hardhat run --network sepolia scripts/deploy.js
 ```
