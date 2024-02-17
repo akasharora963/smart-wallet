@@ -87,6 +87,8 @@ And Run
 ```bash
 npm run start
 ```
+### Frontend Preview
+![Screenshot from 2024-02-17 21-57-37](https://github.com/akasharora963/smart-wallet/assets/45670997/846e4ea6-5501-4274-b0e4-7fbb2c52da24)
 
 
 
