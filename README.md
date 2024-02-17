@@ -62,6 +62,10 @@ npx hardhat run --network sepolia scripts/deploy.js
 ```bash
 0x9DF57AFA1E5C6386b51B609d32757eA2609edE66
 ```
+Transaction Logs can be found from :
+
+[https://sepolia.etherscan.io/address/0x9df57afa1e5c6386b51b609d32757ea2609ede66](https://sepolia.etherscan.io/address/0x9df57afa1e5c6386b51b609d32757ea2609ede66)
+
 For Fresh Testing you can use this Address
 ```bash
 0x2850E09678157fE78154a1069C129e68Ad2b67Dd
