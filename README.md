@@ -76,6 +76,10 @@ on testnet
 ```bash
 npx hardhat test --network sepolia
 ```
+### Test Cases Passed
+
+![Screenshot from 2024-02-17 22-00-53](https://github.com/akasharora963/smart-wallet/assets/45670997/0af33122-e5cd-4865-bdbe-32b8fc156d2a)
+
 
 
 ## Frontend
