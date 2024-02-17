@@ -14,12 +14,15 @@ contract SmartWallet {
     receive() external payable {}
 
     // Function to delegate calls to another contract
-    function execute(address to, uint256 value, bytes memory data) external returns (bytes memory result) {
+    function execute(
+        address to,
+        bytes memory data
+    ) external returns (bytes memory result) {
         require(msg.sender == owner, "Caller is not the owner");
 
         // Delegate the call to the target contract
-        (bool success, bytes memory returndata) = to.call{value: value}(data);
-        
+        (bool success, bytes memory returndata) = to.call(data);
+
         require(success, "Call to target contract failed");
 
         // Return the result of the call
@@ -36,13 +39,12 @@ contract SmartWallet {
     function destroy(address _owner) external {
         require(_owner == owner, "Only the owner can destroy the wallet");
         //selfdestruct(payable(owner));
-        console.log(address(this).balance,address(this));
+
         payable(_owner).transfer(address(this).balance);
-        console.log(address(this).balance,address(this));     
     }
 
     // Function to destroy the smart wallet
-    function destroyAndTransfer(address newWallet,address _owner) external {
+    function destroyAndTransfer(address newWallet, address _owner) external {
         require(_owner == owner, "Only the owner can transfer the wallet");
         //selfdestruct(payable(owner));
         payable(newWallet).transfer(address(this).balance);
@@ -60,7 +62,6 @@ contract SmartWallet {
 
     // Function to get the balance of the smart wallet
     function getBalance() external view returns (uint256) {
-         console.log(address(this).balance,address(this));
         return address(this).balance;
     }
 }
